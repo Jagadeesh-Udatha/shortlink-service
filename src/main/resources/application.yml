@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: shortlink-service
+  data:
+    mongodb:
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
+      database: ${MONGO_DB:shortlink}
+      auto-index-creation: true   # unique alias, TTL expiry and analytics indexes come from the @Indexed annotations
+  threads:
+    virtual:
+      enabled: true
+
+shortlink:
+  base-url: ${SHORTLINK_BASE_URL:http://localhost:8080}
+  default-ttl-days: 90
+  max-ttl-days: 365
+  click-retention-days: 90
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
